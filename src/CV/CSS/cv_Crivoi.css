@@ -1,0 +1,47 @@
+.page{
+	width: 780px;
+	margin: auto;
+	font-family: 'Source sans Pro',Calibri,Tahoma,sans-serif;
+	font-size: 16px;
+
+}
+
+.infophoto{
+	height: 250px;
+}
+.info{
+	float: left;
+}
+.photo{
+	float: right;
+}
+
+.section{
+	margin-bottom: 70px;
+	text-align: justify;
+}
+.sec-gauche{
+	float: left;
+	font-weight: bold;
+	font-size: 20px;
+}
+.sec-droite{
+	margin-left: 200px;
+	margin-top: 40px;
+}
+h2{
+	font-size: 30px;
+	color: #0000FF ;
+	border-bottom: 3px solid #0000FF;
+
+}
+.titre{
+	font-weight: bold;
+	font-size: 20px;
+}
+#eco{
+	margin-bottom: 30px;
+}
+#l1_eco{
+	margin-bottom: 60px;
+}

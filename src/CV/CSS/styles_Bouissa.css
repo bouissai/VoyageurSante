@@ -1,0 +1,83 @@
+*{
+    padding: 0;
+    margin: 2px;
+}
+
+input{
+    display: none;
+}
+
+div{
+  width:100%;
+  height:2.4rem;
+  overflow:hidden;
+}
+
+input:checked ~ div {height:100%;}
+.titre{
+    padding-top: 1em;
+    font-family:Impact;
+    text-align:center;
+    font-size: 2.1em;
+    margin-bottom: 0;
+    text-decoration-line: overline underline;
+
+}
+
+
+h2{
+    border: 3px solid BLACK;
+    background-color: gray;
+    text-align: center;
+}
+
+.coordonner { 
+    text-align: center; 
+}
+.coordonner ul{
+    display: inline-block;
+    text-align: left;
+    list-style-type: none;
+}
+
+.adresse {
+    list-style-image: url(image/home.svg);
+}  
+.telephone {
+    list-style-image: url(image/phone.svg);
+}
+  
+.mail {
+    list-style-image: url(image/email.svg);
+}
+
+
+
+.Datenaissance {
+    list-style-image: url(image/calendar.svg);
+}  
+.Nationalite {
+    list-style-image: url(image/flag.svg);
+}
+  
+.Permis {
+    list-style-image: url(image/car.svg);
+}
+
+td {
+    border: 1px solid #333;
+    padding: 15px;
+}
+td ul{
+    padding-left: 20px;
+    list-style-type: square;
+}
+
+.competences ul{
+    padding-left: 20px;
+}
+
+.langues ul{
+    padding-left: 20px;
+}
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : cabinetInfirmier.xml
+    Author     : BOUISSA Ilyass / CRIVOI Dmtrii
+    Description: Fichier XML qui correspond aux données d'un cabinet 
+    d'infirmières.
+-->
+
+<med:cabinet
+    xmlns="http://www.ujf-grenoble.fr/l3miage/medical"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:med="http://www.ujf-grenoble.fr/l3miage/medical"
+    xsi:schemaLocation="http://www.ujf-grenoble.fr/l3miage/medical ../XSD/cabinetInfirmier.xsd">
+    
+    <med:nom>Soins à Grenoble</med:nom>
+    
+    <med:adresse>
+        <med:numéro>60</med:numéro>
+        <med:rue>rue de la Chimie</med:rue>
+        <med:codePostal>38041</med:codePostal>
+        <med:ville>Grenoble</med:ville>
+    </med:adresse>
+
+            
+    <med:infirmiers>
+        <med:infirmier id="001">
+            <med:nom>Fréchie</med:nom>
+            <med:prénom>Sarah</med:prénom>
+            <med:photo>sarah.png</med:photo>
+        </med:infirmier>
+        
+        <med:infirmier id="002">
+            <med:nom>Stické</med:nom>
+            <med:prénom>Sophie</med:prénom>
+            <med:photo>sophie.jpg</med:photo>
+        </med:infirmier>
+            
+        <med:infirmier id="003">
+            <med:nom>Ochon</med:nom>
+            <med:prénom>Paul</med:prénom>
+            <med:photo>paul.png</med:photo>
+        </med:infirmier>
+    </med:infirmiers>
+    
+    <med:patients>
+        <med:patient>
+            <!-- Homme, né en août 98 en France, 
+            à Marseille (n°55 en bouches du rhône) 458e naissance -->
+            <med:nom>Alécole</med:nom>
+            <med:prénom>Yvon</med:prénom>
+            <med:sexe>M</med:sexe>
+            <med:naissance>1998-08-22</med:naissance>
+            <med:numéro>198081305545892</med:numéro>
+            <!-- sexe:1 année:98 mois:08 code_geo:13055 ordre:458 clé:92 -->
+            <med:adresse>
+                <med:étage>6</med:étage>
+                <med:numéro>50</med:numéro>
+                <med:rue>avenue Félix Viallet</med:rue>
+                <med:ville>Grenoble</med:ville>
+                <med:codePostal>38031</med:codePostal>
+
+            </med:adresse>
+            <med:visite date = "2015-12-08" intervenant = "001">
+                <med:acte id = "109"/>
+            </med:visite>
+        </med:patient>
+        
+        <med:patient>
+            <!-- Elvire est née le 08 mars 82 en France, 
+            à Lyon (n° 23 dans le rhône),
+            il s'agissait de la 52e naissance dans cette ville -->
+            <med:nom>Orouge</med:nom>
+            <med:prénom>Elvire</med:prénom>
+            <med:sexe>F</med:sexe>
+            <med:naissance>1982-03-08</med:naissance>
+            <med:numéro>282036912305225</med:numéro>
+            <!-- sexe:2 année:82 mois:03 code_geo:69123 ordre:052 clé:25 -->
+            <med:adresse>
+                <med:rue>Rond-Point de la Croix de Vie</med:rue>
+                <med:ville>La Tronche</med:ville>
+                <med:codePostal>38700</med:codePostal>
+            </med:adresse>
+            <med:visite date = "2015-12-08" >
+                <med:acte id = "300"/>
+            </med:visite>
+        </med:patient>
+        
+        <med:patient>
+            <!-- Oscare est née le 25 mars 75 en France, 
+            à Chambéry (n° 65 dans la Savoie)
+            Il s'agissait de la 692e naissance. -->
+            <med:nom>Pien</med:nom>
+            <med:prénom>Oscare</med:prénom>
+            <med:sexe>M</med:sexe>
+            <med:naissance>1975-03-25</med:naissance>
+            <med:numéro>175037306569252</med:numéro>
+            <!-- sexe:1 année:75 mois:03 code_geo:73065 ordre:692 clé:52 -->
+            <med:adresse>
+                <med:rue>Casimir Brenier</med:rue>
+                <med:ville>Grenoble</med:ville>
+                <med:codePostal>38000</med:codePostal>
+            </med:adresse>
+            <med:visite date = "2015-12-08" intervenant = "001" >
+                <med:acte id = "101"/> <!-- on a 2 id ici 101 et 104 aussi -->
+                <med:acte id = "104"/>
+            </med:visite>
+        </med:patient>
+
+        <med:patient>
+            <!-- Xavier est un petit garçon de 4 ans, 
+            né le 02 août 2011 en France, à Bordeaux (n° 63 dans la Gironde). 
+            Il s'agi de la 35e naissance.. -->
+            <med:nom>Kapoëtla</med:nom>
+            <med:prénom>Xavier</med:prénom>
+            <med:sexe>M</med:sexe>
+            <med:naissance>2011-08-02</med:naissance>
+            <med:numéro>111083306303521</med:numéro>
+            <!-- sexe:1 année:11 mois:08 code_geo:33063 ordre:035 clé:21 -->
+            <med:adresse>
+                <med:numéro>25</med:numéro>
+                <med:rue>rue des Martyrs</med:rue>
+                <med:ville>Grenoble</med:ville>
+                <med:codePostal>38042</med:codePostal>
+            </med:adresse>
+            <med:visite date = "2015-12-08">
+                <med:acte id = "111"></med:acte>
+            </med:visite>
+        </med:patient>
+    </med:patients>
+    
+</med:cabinet>

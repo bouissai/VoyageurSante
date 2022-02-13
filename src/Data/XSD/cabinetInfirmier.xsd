@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+
+<!--
+    Document   : cabinetInfirmier.xsd
+    Author     : BOUISSA Ilyass / CRIVOI Dmtrii
+    Description: XML SCHEMA du fichier de cabinetInfirmier.xml qui correspond
+    aux données d'un cabinet d'infirmières.
+-->
+
+<xs:schema version="1.0"
+           xmlns="http://www.ujf-grenoble.fr/l3miage/medical"
+           targetNamespace="http://www.ujf-grenoble.fr/l3miage/medical"
+           xmlns:med="http://www.ujf-grenoble.fr/l3miage/medical"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <!-- 
+    Le cabinet a un nom une adresse, des infirmiers et des patients  
+    -->
+    <xs:element name="cabinet" type="Cabinet">
+           <xs:keyref name="idPatient" refer="idUnique">
+                    <xs:selector xpath="med:patients/med:patient/med:visite"/>
+                    <xs:field xpath="@intervenant"/>
+            </xs:keyref>
+    </xs:element>
+    <xs:complexType name="Cabinet">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="adresse" type="AdresseC"/>
+            <xs:element name="infirmiers" type="Infirmiers">
+                <!-- Unicité des identifiant d'infirmiers -->
+                <xs:unique name="idUnique">
+                    <xs:selector xpath="./med:infirmier"/>
+                    <xs:field xpath="@id"/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="patients" type="Patients"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- 
+    Dans une adresse on a un numéro de rue avec son code postale et la ville associé au code postale
+    -->
+    <xs:complexType name="AdresseC">
+        <xs:sequence>
+            <xs:element name="numéro" type="xs:int"/>
+            <xs:element name="rue" type="xs:string"/>
+            <xs:element name="codePostal" type="CodePostal"/>
+            <xs:element name="ville" type="Ville"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Une ville commence toujours par une majuscule --> 
+    <xs:simpleType name="Ville">    
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\p{Lu}.*"/>
+        </xs:restriction >
+    </xs:simpleType>
+
+    <!-- Un code postale doit avoir exactement 5 chiffres --> 
+    <xs:simpleType name="CodePostal">    
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{5}"/>
+        </xs:restriction >
+    </xs:simpleType >
+    
+    
+    <xs:complexType name="Infirmiers">
+        <xs:sequence>
+            <xs:element name="infirmier" type="Infirmier" maxOccurs="unbounded"/>
+          
+        </xs:sequence>
+    </xs:complexType>
+    <!--
+    Les infirmiers ont tous un id 
+    ainsi qu'un nom, un prenom et une photo
+    --> 
+    <xs:complexType name="Infirmier">
+        <xs:sequence>
+            <xs:element name="nom" type="NomPrenomType"/>
+            <xs:element name="prénom" type="NomPrenomType"/>
+            <xs:element name="photo" type="PhotoType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:int"/>
+    </xs:complexType>
+    
+    <!-- Une photo est définie par une suite de caractere est ce finit par une extension  --> 
+    <xs:simpleType name="PhotoType">    
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(.)+\.(gif|jpg|jpeg|png|tiff|psd|pdf|bmp)"/>
+        </xs:restriction >
+    </xs:simpleType>
+   
+    
+    <!-- Un nom et un prenom commence toujours par une majuscule --> 
+    <xs:simpleType name="NomPrenomType">    
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\p{Lu}.*"/>
+        </xs:restriction >
+    </xs:simpleType>
+
+    <!-- On a plusieurs patients-->
+    <xs:complexType name="Patients">
+        <xs:sequence>
+            <xs:element name="patient" type="Patient" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+            
+    
+    <!-- Chaque patient à un nom,un prenom,un genre, une date de naissance,
+    un numéro de securité sociale, une adresse et une visite
+    -->
+    <xs:complexType name="Patient">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prénom" type="xs:string"/>
+            <xs:element name="sexe" type="Sexe"/> 
+            <xs:element name="naissance" type="xs:date"/>
+            <xs:element name="numéro" type="NIRType"/> <!--Ici on a un pattern à definir-->
+            <xs:element name="adresse" type="AdresseP"/>
+            <xs:element name="visite" type="Visite"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+
+    <xs:simpleType name="NIRType">
+        <xs:restriction base="xs:string">
+            <xs:length value="15"/> <!-- Le numéro de sécruité social a toujours 15 carctère  -->
+            <xs:pattern value="[1|2][0-9]{4}[0-9AB][0-9]{9}"/>
+            <!--
+            Pattern du type NIR
+            rang 1
+                le sexe (1 pour les hommes et 2 pour les femmes).
+            rangs 2 et 3
+                les deux derniers chiffres de l'année de naissance
+            rangs 4 et 5
+                les deux chiffres du mois de naissance (de 01 à 12)
+            rangs 6 à 10
+                le lieu de naissance : il s'appuie sur le code officiel géographique de l'INSEE. 
+                (Pour la Corse la numérotation 2A, 2B).
+            rangs 11 à 13
+                un numéro d'ordre non significatif 
+            rangs 14 à 15
+                la clé de securité
+            -->
+        </xs:restriction>
+    </xs:simpleType>
+
+    
+    <xs:complexType name="AdresseP">
+        <xs:sequence>
+            <xs:element name="étage" type="xs:int" minOccurs="0"/>
+            <xs:element name="numéro" type="xs:int" minOccurs="0"/>
+            <xs:element name="rue" type="xs:string"/>
+            <xs:element name="ville" type="Ville"/>
+            <xs:element name="codePostal" type="CodePostal"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Le sexe est une enumération M ou F-->
+    <xs:simpleType name="Sexe">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="M"/>
+        </xs:restriction >
+    </xs:simpleType>
+    
+    
+    <xs:complexType name="Visite">
+        <xs:sequence>
+            <xs:element name="acte" type="Acte" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="date" type="xs:date"/>
+        <xs:attribute name="intervenant" type="xs:int" />
+    </xs:complexType>
+
+    <xs:complexType name="Acte">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="idType"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType >    
+    
+    
+    <!-- Mais tout les id de la liste doivent exactement avoir 3 chiffres -->
+    <xs:simpleType name="idType">    
+        <xs:restriction base="xs:int">
+            <xs:pattern value="[0-9]{3}"/>
+        </xs:restriction >
+    </xs:simpleType>
+</xs:schema>

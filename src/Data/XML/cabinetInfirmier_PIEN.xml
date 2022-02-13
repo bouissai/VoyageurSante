@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<patient xmlns:act="http://www.ujf-grenoble.fr/l3miage/actes" xmlns:med="http://www.ujf-grenoble.fr/l3miage/medical">
+    <nom>Pien</nom>
+    <prénom>Oscare</prénom>
+    <sexe>M</sexe>
+    <naissance>1975-03-25</naissance>
+    <numéroSS>175037306569252</numéroSS>
+    <adresse>
+        <rue>Casimir Brenier</rue>
+        <codePostal>38000</codePostal>
+        <ville>Grenoble</ville>
+    </adresse>
+    <visite date="2015-12-08">
+        <intervenant>
+            <nom>Fréchie</nom>
+            <prénom>Sarah</prénom>
+        </intervenant>
+        <acte> 
+            Prélèvement par ponction veineuse directe
+        </acte>
+        <acte>
+            Inection intraveineuse directe isolée.
+        </acte>
+    </visite>
+</patient>
